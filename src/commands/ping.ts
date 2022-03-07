@@ -11,26 +11,8 @@ export default {
     interaction.reply({
       content: `
       > :ping_pong: Pong!
-      > ${client.ws.ping}ms`,
+      > **${client.ws.ping}ms**`,
       ephemeral: true,
     });
   },
 } as ICommand;
-
-// export const data: SlashCommandBuilder = new SlashCommandBuilder()
-//   .setName('ping')
-//   .setDescription('replies with pong');
-
-// export async function execute(
-//   interaction: CommandInteraction,
-//   client?: Client
-// ) {
-//   log.info(`guild-id on ping - ${interaction.guildId}`);
-
-//   return interaction.reply({
-//     content: `
-//     > :ping_pong: Pong!
-//     > ${client.ws.ping}ms`,
-//     ephemeral: true,
-//   });
-// }

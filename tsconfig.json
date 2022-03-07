@@ -1,28 +1,19 @@
 {
   "compilerOptions": {
+    "target": "ES2017",
     "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "rootDir": "src",
-    "incremental": false,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "isolatedModules": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "removeComments": true
   },
-  "include": [
-    // "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": ["node_modules", "./dist/**/*"]
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
 }
