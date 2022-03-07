@@ -1,24 +1,39 @@
-import { Client, Intents } from 'discord.js';
+import DiscordJS, { Client, Intents } from 'discord.js';
+import { Logger } from 'tslog';
+import WOKCommands from 'wokcommands';
 
-import * as commandModule from './commands';
 import config from './config/config';
 
-const commands = Object(commandModule);
-const client = new Client({ intents: Intents.FLAGS.GUILDS });
+// import * as commandModule from './commands';
+const log: Logger = new Logger();
+
+// const commands = Object(commandModule);
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+  ],
+});
 
 client.once('ready', () => {
+  new WOKCommands(client, {
+    commandDir: __dirname + '/commands',
+    typeScript: true,
+  });
+
   client.user.setStatus('online');
-  console.log('🤖 discord bot is ready!');
-  const Guilds = client.guilds.cache.map((guild) => guild.id);
-  console.log(Guilds);
+  log.info('🤖 discord bot is ready!');
 });
 
-client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isCommand()) {
-    return;
-  }
-  const { commandName } = interaction;
-  commands[commandName].execute(interaction, client);
-});
+// client.on('interactionCreate', async (interaction) => {
+//   if (!interaction.isCommand()) {
+//     return;
+//   }
+
+//   const { commandName } = interaction;
+
+//   commands[commandName].execute(interaction, client);
+// });
 
 client.login(config.DISCORD_BOT_TOKEN);
