@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/index.js",
+    "start": "node -r ts-node/register/transpile-only src/index.ts",
+    "dev:1": "tsc && node dist/index.js",
     "start:1": "ts-node src/index.ts",
     "compile": "tsc && node index.js",
     "dev": "nodemon --config nodemon.json src/index.ts",
