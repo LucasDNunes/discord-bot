@@ -1,3 +1,4 @@
+import DiscordJS from 'discord.js';
 import { Logger } from 'tslog';
 import { ICommand } from 'wokcommands';
 
@@ -5,14 +6,21 @@ const log: Logger = new Logger();
 
 export default {
   category: 'Testing',
-  description: 'deleta todas mensagem do chat atual',
+  description: 'deleta umas mensagens do chat atual',
   slash: true,
-
+  permissions: ['ADMINISTRATOR'],
+  expectedArgs: '<quantidade>',
+  options: [
+    {
+      name: 'quantidade',
+      description: 'quantidade de mensagens para deletar',
+      required: true,
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER,
+    },
+  ],
   callback: async ({ interaction, args, channel }) => {
-    if (!args[0]) return interaction.reply('entre com um valor');
-
     const number = Number(args[0]);
-    if (isNaN(number)) return interaction.reply('digite apenas número');
+
     if (number > 100 || number < 1)
       return interaction.reply('digite um valor entre 1-99');
 
@@ -21,5 +29,10 @@ export default {
       .then((messages) => {
         channel.bulkDelete(messages);
       });
+
+    interaction.reply({
+      content: `deletou as últimas ${number} menssagens `,
+      ephemeral: true,
+    });
   },
 } as ICommand;

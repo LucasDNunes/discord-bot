@@ -15,7 +15,7 @@ const client = new Client({
   ],
 });
 
-client.once('ready', () => {
+client.once('ready', async () => {
   log.info(__dirname);
   new WOKCommands(client, {
     commandDir: path.join(__dirname, '/commands'),
@@ -26,33 +26,25 @@ client.once('ready', () => {
   log.info('🤖 discord bot is ready!');
 });
 
-// client.on('interactionCreate', async (interaction) => {
-//   if (!interaction.isCommand()) {
-//     return;
-//   }
-//   interaction.channel.send('salve');
-// });
-
 client.on('messageCreate', (msg) => {
   if (msg.author.bot) return;
   if (isAuthorSelected(msg)) {
-    sendMessage(msg);
+    return sendMessage(msg);
   }
 });
-
-// client.on();
 
 client.login(config.BOT_TOKEN);
 
 function sendMessage(msg: Message): void {
   msg.react('🖕');
   msg.react('💩');
-  // msg.react('🤡');
-  // msg.react('👺');
   msg.channel.send(`${msg.member} se fude seu merda `);
 }
 
 function isAuthorSelected(msg: Message): boolean {
-  const authorsSelecteds: string[] = ['339796687398633472'];
+  const gavax = '273628941498056735';
+  const me = '339796687398633472';
+  const jones = '948371805192740874';
+  const authorsSelecteds: string[] = [jones];
   return authorsSelecteds.find((author) => author === msg.author.id).length > 0;
 }
