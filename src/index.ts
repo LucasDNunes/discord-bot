@@ -20,6 +20,7 @@ client.once('ready', async () => {
   new WOKCommands(client, {
     commandDir: path.join(__dirname, '/commands'),
     typeScript: true,
+    testServers: '613118292386644099',
   });
 
   client.user.setStatus('online');
@@ -45,6 +46,9 @@ function isAuthorSelected(msg: Message): boolean {
   const gavax = '273628941498056735';
   const me = '339796687398633472';
   const jones = '948371805192740874';
+  const marioVerde = '210606331126743041';
+
   const authorsSelecteds: string[] = [jones];
-  return authorsSelecteds.find((author) => author === msg.author.id).length > 0;
+  const finded = authorsSelecteds.filter((author) => author === msg.author.id);
+  return finded ? finded.length > 0 : false;
 }

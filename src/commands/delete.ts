@@ -5,11 +5,13 @@ import { ICommand } from 'wokcommands';
 const log: Logger = new Logger();
 
 export default {
-  category: 'Testing',
+  category: 'Moderation',
+  testOnly: true,
   description: 'deleta umas mensagens do chat atual',
   slash: true,
   permissions: ['ADMINISTRATOR'],
-  expectedArgs: '<quantidade>',
+  maxArgs: 1,
+  expectedArgs: '[quantidade]',
   options: [
     {
       name: 'quantidade',
@@ -24,14 +26,16 @@ export default {
     if (number > 100 || number < 1)
       return interaction.reply('digite um valor entre 1-99');
 
-    await interaction.channel.messages
-      .fetch({ limit: number })
-      .then((messages) => {
-        channel.bulkDelete(messages);
-      });
+    const messages = await interaction.channel.messages.fetch({
+      limit: number,
+    });
+
+    const { size } = messages;
+
+    messages.forEach((m) => m.delete());
 
     interaction.reply({
-      content: `deletou as últimas ${number} menssagens `,
+      content: `deletou ${size} menssagen(s) `,
       ephemeral: true,
     });
   },
