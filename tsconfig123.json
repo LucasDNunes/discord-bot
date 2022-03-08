@@ -9,8 +9,7 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": ".",
-    "rootDir": "src",
+    "baseUrl": "./",
     "incremental": false,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -18,7 +17,5 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  }
 }
