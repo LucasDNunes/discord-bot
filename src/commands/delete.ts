@@ -6,7 +6,7 @@ const log: Logger = new Logger();
 
 export default {
   category: 'Moderation',
-  testOnly: true,
+  // testOnly: true,
   description: 'deleta umas mensagens do chat atual',
   slash: true,
   permissions: ['ADMINISTRATOR'],
@@ -32,7 +32,9 @@ export default {
 
     const { size } = messages;
 
-    messages.forEach((m) => m.delete());
+    // messages.forEach((m) => m.delete());
+
+    channel.bulkDelete(messages);
 
     interaction.reply({
       content: `deletou ${size} menssagen(s) `,
