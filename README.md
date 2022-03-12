@@ -15,7 +15,7 @@ A simple discord bot.
 >   This command will return the latency.
 > - /delete < amount >
 >   This command will delete de last messages past in the amount.
->   /timeout < user > < time >
+> - /timeout < user > < time >
 >   This command will put a member in time out, the timer in parameter is in minutes.
 
 ### Features
