@@ -23,6 +23,8 @@ export default (client: Client) => {
     const jones = '948371805192740874';
     const jones2 = '549721820853436416';
     const marioVerde = '210606331126743041';
+    const coto = '392175418184171522';
+    const antonio = '309000953929924619';
 
     const authorsSelecteds: string[] = [jones, jones2];
     const finded = authorsSelecteds.filter(
